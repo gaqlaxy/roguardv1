@@ -1,6 +1,7 @@
 import React from 'react';
 import { Product } from '../types';
 import { X, CheckCircle, AlertCircle } from 'lucide-react';
+import { formatPrice } from '../constants';
 
 interface ComparisonProps {
   products: Product[];
@@ -27,12 +28,12 @@ const Comparison: React.FC<ComparisonProps> = ({ products, onRemove, onClear }) 
     );
   }
 
-  const specs = [
-    { label: 'Price', key: 'price', format: (v: any) => `₹${v.toLocaleString()}` },
-    { label: 'Capacity', key: 'capacity' },
-    { label: 'Filtration Stages', key: 'filtrationStages', format: (v: any) => `${v} Stages` },
-    { label: 'Warranty', key: 'warranty' },
-    { label: 'Description', key: 'description' },
+  const specs: Array<{ label: string; render: (product: Product) => React.ReactNode }> = [
+    { label: 'Price', render: (product) => formatPrice(product.price) },
+    { label: 'Capacity', render: (product) => product.capacity },
+    { label: 'Filtration Stages', render: (product) => `${product.filtrationStages} Stages` },
+    { label: 'Warranty', render: (product) => product.warranty },
+    { label: 'Description', render: (product) => product.description }
   ];
 
   return (
@@ -71,14 +72,13 @@ const Comparison: React.FC<ComparisonProps> = ({ products, onRemove, onClear }) 
             </thead>
             <tbody>
               {specs.map((spec, idx) => (
-                <tr key={spec.key} className={idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/50'}>
+                <tr key={spec.label} className={idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/50'}>
                   <td className="p-4 border-r font-medium text-gray-500 sticky left-0 bg-inherit z-10 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">
                     {spec.label}
                   </td>
                   {products.map(product => (
                     <td key={product.id} className="p-4 border-b text-gray-900">
-                      {/* @ts-ignore */}
-                      {spec.format ? spec.format(product[spec.key]) : product[spec.key]}
+                      {spec.render(product)}
                     </td>
                   ))}
                 </tr>

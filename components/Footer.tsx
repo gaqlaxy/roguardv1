@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-white font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="hover:text-brand-400 transition-colors">Home</a></li>
+              <li><a href="#hero" className="hover:text-brand-400 transition-colors">Home</a></li>
               <li><a href="#about" className="hover:text-brand-400 transition-colors">About Us</a></li>
               <li><a href="#products" className="hover:text-brand-400 transition-colors">Products</a></li>
               <li><a href="#testimonials" className="hover:text-brand-400 transition-colors">Reviews</a></li>
@@ -30,23 +30,23 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-white font-semibold mb-4">Services</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="hover:text-brand-400 transition-colors">RO Installation</a></li>
-              <li><a href="#" className="hover:text-brand-400 transition-colors">Annual Maintenance</a></li>
-              <li><a href="#" className="hover:text-brand-400 transition-colors">Filter Replacement</a></li>
-              <li><a href="#" className="hover:text-brand-400 transition-colors">Water Testing</a></li>
+              <li><a href="#contact" className="hover:text-brand-400 transition-colors">RO Installation</a></li>
+              <li><a href="#contact" className="hover:text-brand-400 transition-colors">Annual Maintenance</a></li>
+              <li><a href="#contact" className="hover:text-brand-400 transition-colors">Filter Replacement</a></li>
+              <li><a href="#contact" className="hover:text-brand-400 transition-colors">Water Testing</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-white font-semibold mb-4">Connect With Us</h4>
             <div className="flex space-x-4">
-              <a href="#" className="text-slate-400 hover:text-brand-400 transition-colors" aria-label="Facebook">
+              <a href="https://facebook.com" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-brand-400 transition-colors" aria-label="Facebook">
                 <Facebook size={20} />
               </a>
-              <a href="#" className="text-slate-400 hover:text-brand-400 transition-colors" aria-label="Instagram">
+              <a href="https://instagram.com" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-brand-400 transition-colors" aria-label="Instagram">
                 <Instagram size={20} />
               </a>
-              <a href="#" className="text-slate-400 hover:text-brand-400 transition-colors" aria-label="Twitter">
+              <a href="https://twitter.com" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-brand-400 transition-colors" aria-label="Twitter">
                 <Twitter size={20} />
               </a>
             </div>

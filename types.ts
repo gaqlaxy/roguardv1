@@ -25,11 +25,16 @@ export interface BlogPost {
   id: string;
   title: string;
   excerpt: string;
-  content: string;
+  content: BlogContentBlock[];
   date: string;
   author: string;
   image: string;
   tags: string[];
 }
+
+export type BlogContentBlock =
+  | { type: 'p'; text: string }
+  | { type: 'h3'; text: string }
+  | { type: 'ul'; items: string[] };
 
 export type ViewState = 'HOME' | 'ALL_PRODUCTS' | 'COMPARE' | 'BLOG';

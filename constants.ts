@@ -1,7 +1,15 @@
 import { Product, Testimonial, BlogPost } from './types';
 
-export const COMPANY_PHONE = "919876543210"; // Example International Format
-export const WHATSAPP_MESSAGE_PRE = "Hello ROGuard, I am interested in: ";
+export const COMPANY_PHONE = "919150236680"; // Example International Format
+export const WHATSAPP_MESSAGE_PRE = "Hello SHAM Aqua, I am interested in: ";
+
+const INR_FORMAT = new Intl.NumberFormat('en-IN', {
+  style: 'currency',
+  currency: 'INR',
+  maximumFractionDigits: 0
+});
+
+export const formatPrice = (value: number) => INR_FORMAT.format(value);
 
 export const PRODUCTS: Product[] = [
   {
@@ -117,17 +125,26 @@ export const BLOG_POSTS: BlogPost[] = [
     author: 'Rahul Verma, Technician',
     image: 'https://images.unsplash.com/photo-1546552202-b2f5670845cc?auto=format&fit=crop&q=80&w=800',
     tags: ['Maintenance', 'Health'],
-    content: `
-      <p>Drinking water is essential for health, but drinking contaminated water from a faulty filter can be dangerous. Here are the top 5 signs your RO filter needs a change:</p>
-      <ul class="list-disc pl-5 my-4 space-y-2">
-        <li><strong>Bad Taste or Odor:</strong> If your water smells like chlorine or has a metallic taste, the carbon filter is likely exhausted.</li>
-        <li><strong>Slow Water Flow:</strong> A clogged membrane often reduces water pressure significantly.</li>
-        <li><strong>TDS Levels Increasing:</strong> Use a TDS meter. If the reading is creeping up, your membrane is failing.</li>
-        <li><strong>Filter Change Alarm:</strong> Modern purifiers have indicators. Don't ignore them!</li>
-        <li><strong>Over 12 Months:</strong> Even without symptoms, filters should be changed annually for safety.</li>
-      </ul>
-      <p>Regular maintenance ensures you and your family are always protected from waterborne diseases.</p>
-    `
+    content: [
+      {
+        type: 'p',
+        text: 'Drinking water is essential for health, but drinking contaminated water from a faulty filter can be dangerous. Here are the top 5 signs your RO filter needs a change:'
+      },
+      {
+        type: 'ul',
+        items: [
+          'Bad Taste or Odor: If your water smells like chlorine or has a metallic taste, the carbon filter is likely exhausted.',
+          'Slow Water Flow: A clogged membrane often reduces water pressure significantly.',
+          'TDS Levels Increasing: Use a TDS meter. If the reading is creeping up, your membrane is failing.',
+          'Filter Change Alarm: Modern purifiers have indicators. Do not ignore them.',
+          'Over 12 Months: Even without symptoms, filters should be changed annually for safety.'
+        ]
+      },
+      {
+        type: 'p',
+        text: 'Regular maintenance ensures you and your family are always protected from waterborne diseases.'
+      }
+    ]
   },
   {
     id: 'b2',
@@ -137,16 +154,31 @@ export const BLOG_POSTS: BlogPost[] = [
     author: 'Dr. Anita Roy',
     image: 'https://images.unsplash.com/photo-1521405924368-64c5b84bec60?auto=format&fit=crop&q=80&w=800',
     tags: ['Buying Guide', 'Technology'],
-    content: `
-      <p>Choosing a water purifier depends largely on the source of your water (Municipal, Borewell, or Tanker). Here is a quick guide:</p>
-      <h3 class="text-lg font-bold mt-4">RO (Reverse Osmosis)</h3>
-      <p>Best for high TDS water (above 500 ppm). It removes heavy metals, salts, and fluoride. However, it requires electricity and wastes some water.</p>
-      <h3 class="text-lg font-bold mt-4">UV (Ultraviolet)</h3>
-      <p>Kills bacteria and viruses but does not remove dissolved solids. Good for low TDS municipal water.</p>
-      <h3 class="text-lg font-bold mt-4">UF (Ultra Filtration)</h3>
-      <p>Works without electricity. Removes bacteria and cysts but not dissolved salts. Good for areas with clean water but uncertain microbial safety.</p>
-      <p class="mt-4">For most Indian households with mixed water supply, a combination of RO + UV is the safest bet.</p>
-    `
+    content: [
+      {
+        type: 'p',
+        text: 'Choosing a water purifier depends largely on the source of your water (Municipal, Borewell, or Tanker). Here is a quick guide:'
+      },
+      { type: 'h3', text: 'RO (Reverse Osmosis)' },
+      {
+        type: 'p',
+        text: 'Best for high TDS water (above 500 ppm). It removes heavy metals, salts, and fluoride. However, it requires electricity and wastes some water.'
+      },
+      { type: 'h3', text: 'UV (Ultraviolet)' },
+      {
+        type: 'p',
+        text: 'Kills bacteria and viruses but does not remove dissolved solids. Good for low TDS municipal water.'
+      },
+      { type: 'h3', text: 'UF (Ultra Filtration)' },
+      {
+        type: 'p',
+        text: 'Works without electricity. Removes bacteria and cysts but not dissolved salts. Good for areas with clean water but uncertain microbial safety.'
+      },
+      {
+        type: 'p',
+        text: 'For most Indian households with mixed water supply, a combination of RO + UV is the safest bet.'
+      }
+    ]
   },
   {
     id: 'b3',
@@ -156,15 +188,27 @@ export const BLOG_POSTS: BlogPost[] = [
     author: 'Editorial Team',
     image: 'https://images.unsplash.com/photo-1621932953986-15fcf0847135?auto=format&fit=crop&q=80&w=800',
     tags: ['Health', 'Lifestyle'],
-    content: `
-      <p>Standard RO water tends to be slightly acidic because the purification process removes minerals. Alkaline purifiers add minerals like Calcium and Magnesium back into the water, raising the pH level to 8 or 8.5.</p>
-      <p class="mt-2"><strong>Benefits claimed:</strong></p>
-      <ul class="list-disc pl-5 my-2">
-        <li>Neutralizes acid in the bloodstream.</li>
-        <li>Improves metabolism.</li>
-        <li>Better hydration due to smaller molecular clusters.</li>
-      </ul>
-      <p>While scientific consensus is still evolving, many users report better digestion and taste. If you suffer from acidity, an Alkaline RO might be a worthy investment.</p>
-    `
+    content: [
+      {
+        type: 'p',
+        text: 'Standard RO water tends to be slightly acidic because the purification process removes minerals. Alkaline purifiers add minerals like Calcium and Magnesium back into the water, raising the pH level to 8 or 8.5.'
+      },
+      {
+        type: 'p',
+        text: 'Benefits claimed:'
+      },
+      {
+        type: 'ul',
+        items: [
+          'Neutralizes acid in the bloodstream.',
+          'Improves metabolism.',
+          'Better hydration due to smaller molecular clusters.'
+        ]
+      },
+      {
+        type: 'p',
+        text: 'While scientific consensus is still evolving, many users report better digestion and taste. If you suffer from acidity, an Alkaline RO might be a worthy investment.'
+      }
+    ]
   }
 ];

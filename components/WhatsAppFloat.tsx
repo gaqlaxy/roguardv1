@@ -4,7 +4,7 @@ import { COMPANY_PHONE } from '../constants';
 
 const WhatsAppFloat: React.FC = () => {
   const handleClick = () => {
-    const url = `https://wa.me/${COMPANY_PHONE}?text=Hi ROGuard, I would like to know more about your services.`;
+    const url = `https://wa.me/${COMPANY_PHONE}?text=Hi Sham Aqua, I would like to know more about your services.`;
     window.open(url, '_blank');
   };
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BLOG_POSTS } from '../constants';
 import { BlogPost } from '../types';
-import { ArrowLeft, Calendar, User, Tag, ChevronRight } from 'lucide-react';
+import { ArrowLeft, Calendar, User, ChevronRight } from 'lucide-react';
 
 const Blog: React.FC = () => {
   const [activePost, setActivePost] = useState<BlogPost | null>(null);
@@ -37,10 +37,31 @@ const Blog: React.FC = () => {
 
           <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">{activePost.title}</h1>
           
-          <div 
-            className="prose prose-lg prose-blue max-w-none text-gray-700 leading-relaxed"
-            dangerouslySetInnerHTML={{ __html: activePost.content }}
-          />
+          <div className="prose prose-lg prose-blue max-w-none text-gray-700 leading-relaxed">
+            {activePost.content.map((block, idx) => {
+              if (block.type === 'h3') {
+                return (
+                  <h3 key={idx} className="text-lg font-bold mt-6">
+                    {block.text}
+                  </h3>
+                );
+              }
+              if (block.type === 'ul') {
+                return (
+                  <ul key={idx} className="list-disc pl-5 my-4 space-y-2">
+                    {block.items.map((item, itemIdx) => (
+                      <li key={itemIdx}>{item}</li>
+                    ))}
+                  </ul>
+                );
+              }
+              return (
+                <p key={idx} className="mt-2">
+                  {block.text}
+                </p>
+              );
+            })}
+          </div>
 
           <div className="mt-12 pt-8 border-t border-gray-100">
              <h3 className="font-bold text-gray-900 mb-4">Share this article</h3>

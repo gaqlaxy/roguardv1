@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Phone, Mail, MapPin, Send, CheckCircle, Loader2 } from 'lucide-react';
+import { COMPANY_PHONE } from '../constants';
 
 const ContactCTA: React.FC = () => {
   const [formState, setFormState] = useState({
@@ -13,12 +14,18 @@ const ContactCTA: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('LOADING');
-    
-    // Simulate network request
-    setTimeout(() => {
-      setStatus('SUCCESS');
-      // In a real app, here you would send the data to your backend
-    }, 1500);
+
+    const message = [
+      `Name: ${formState.name}`,
+      `Phone: ${formState.phone}`,
+      `Service: ${formState.service}`,
+      `Message: ${formState.message || 'N/A'}`
+    ].join('\n');
+
+    const url = `https://wa.me/${COMPANY_PHONE}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+
+    setTimeout(() => setStatus('SUCCESS'), 400);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -53,7 +60,7 @@ const ContactCTA: React.FC = () => {
                 </div>
                 <div className="text-left">
                   <p className="text-xs text-brand-300 uppercase tracking-wider font-semibold">Call Us</p>
-                  <p className="text-lg font-medium text-white">+91 987 654 3210</p>
+                  <p className="text-lg font-medium text-white">+91 91502 36680</p>
                 </div>
               </div>
               
@@ -63,7 +70,7 @@ const ContactCTA: React.FC = () => {
                 </div>
                 <div className="text-left">
                   <p className="text-xs text-brand-300 uppercase tracking-wider font-semibold">Email Us</p>
-                  <p className="text-lg font-medium text-white">support@roguard.com</p>
+                  <p className="text-lg font-medium text-white">support@shamaquaclassictech.com</p>
                 </div>
               </div>
               
@@ -73,7 +80,7 @@ const ContactCTA: React.FC = () => {
                 </div>
                 <div className="text-left">
                   <p className="text-xs text-brand-300 uppercase tracking-wider font-semibold">Visit Us</p>
-                  <p className="text-lg font-medium text-white">123 Aqua Street, Tech Park, City</p>
+                  <p className="text-lg font-medium text-white">Chennai</p>
                 </div>
               </div>
             </div>

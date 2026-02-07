@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { X, Check, MessageCircle, Droplet, Zap, Ruler } from 'lucide-react';
 import { Product } from '../types';
-import { COMPANY_PHONE, WHATSAPP_MESSAGE_PRE } from '../constants';
+import { COMPANY_PHONE, WHATSAPP_MESSAGE_PRE, formatPrice } from '../constants';
 
 interface ProductModalProps {
   product: Product;
@@ -9,6 +9,48 @@ interface ProductModalProps {
 }
 
 const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
+  const dialogRef = useRef<HTMLDivElement | null>(null);
+  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    document.body.classList.add('no-scroll');
+    closeButtonRef.current?.focus();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+
+      if (event.key !== 'Tab') {
+        return;
+      }
+
+      const focusable = dialogRef.current?.querySelectorAll<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+
+      if (!focusable || focusable.length === 0) {
+        return;
+      }
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.classList.remove('no-scroll');
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [onClose]);
   const handleEnquiry = () => {
     const text = encodeURIComponent(`${WHATSAPP_MESSAGE_PRE} ${product.name}`);
     window.open(`https://wa.me/${COMPANY_PHONE}?text=${text}`, '_blank');
@@ -21,10 +63,17 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
         onClick={onClose}
       ></div>
       
-      <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto flex flex-col md:flex-row animate-fade-in-up">
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="product-modal-title"
+        className="relative bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto flex flex-col md:flex-row animate-fade-in-up"
+      >
         
         {/* Close Button */}
         <button 
+          ref={closeButtonRef}
           onClick={onClose}
           className="absolute top-4 right-4 z-10 p-2 bg-white/80 rounded-full hover:bg-gray-100 transition-colors"
         >
@@ -46,12 +95,12 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
         <div className="w-full md:w-1/2 p-8 flex flex-col">
           <div className="mb-auto">
             <h3 className="text-sm font-bold text-brand-600 uppercase tracking-wide mb-1">RO Purifier</h3>
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">{product.name}</h2>
+            <h2 id="product-modal-title" className="text-3xl font-bold text-gray-900 mb-2">{product.name}</h2>
             
             <div className="flex items-center space-x-3 mb-6">
-              <span className="text-2xl font-bold text-gray-900">₹{product.price.toLocaleString()}</span>
+              <span className="text-2xl font-bold text-gray-900">{formatPrice(product.price)}</span>
               {product.originalPrice && (
-                <span className="text-lg text-gray-400 line-through">₹{product.originalPrice.toLocaleString()}</span>
+                <span className="text-lg text-gray-400 line-through">{formatPrice(product.originalPrice)}</span>
               )}
               {product.originalPrice && (
                 <span className="bg-green-100 text-green-700 text-xs font-bold px-2 py-1 rounded">

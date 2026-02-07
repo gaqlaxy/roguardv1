@@ -7,7 +7,7 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
   return (
-    <section id="hero" className="relative h-[90vh] min-h-[600px] flex items-center bg-slate-900 overflow-hidden">
+    <section id="hero" className="relative h-screen min-h-[600px] flex items-center bg-slate-900 overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img 
@@ -30,7 +30,7 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
           
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-tight mb-6">
             Pure Water, <br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-cyan-300">
+            <span className=" bg-clip-text bg-gradient-to-r from-brand-400 to-cyan-300">
               Healthier Life.
             </span>
           </h1>

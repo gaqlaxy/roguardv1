@@ -59,7 +59,7 @@ const About: React.FC = () => {
           <div className="order-1 lg:order-2 relative">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
               <img 
-                src="https://images.unsplash.com/photo-1581093458891-2f30e29b559b?q=80&w=2070&auto=format&fit=crop" 
+                src="https://images.unsplash.com/photo-1662647344062-b0cdb1ed7227?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
                 alt="Technician repairing RO filter" 
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PRODUCTS } from '../constants';
+import { PRODUCTS, formatPrice } from '../constants';
 import { Product, ViewState } from '../types';
 import { ArrowRight, Eye, Star, Scale } from 'lucide-react';
 import ProductModal from './ProductModal';
@@ -112,7 +112,7 @@ const Products: React.FC<ProductsProps> = ({ viewMode, onViewAll, selectedForCom
                   <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
                     <div className="flex flex-col">
                       <span className="text-xs text-gray-500">Price</span>
-                      <span className="text-lg font-bold text-brand-700">₹{product.price.toLocaleString()}</span>
+                      <span className="text-lg font-bold text-brand-700">{formatPrice(product.price)}</span>
                     </div>
                     <button 
                       onClick={() => setSelectedProduct(product)}

@@ -51,7 +51,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigate, onScrollToSect
               <Droplet size={24} fill="currentColor" />
             </div>
             <span className={`text-2xl font-bold ${isScrolled || currentView !== 'HOME' ? 'text-gray-900' : 'text-gray-900 lg:text-white'}`}>
-              RO<span className="text-brand-600">Guard</span>
+              SHAM<span className="text-brand-600"> Aqua</span>
             </span>
           </div>
 
