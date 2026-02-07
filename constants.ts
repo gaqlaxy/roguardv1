@@ -1,7 +1,7 @@
 import { Product, Testimonial, BlogPost } from './types';
 
 export const COMPANY_PHONE = "919150236680"; // Example International Format
-export const WHATSAPP_MESSAGE_PRE = "Hello SHAM Aqua, I am interested in: ";
+export const WHATSAPP_MESSAGE_PRE = "Hello ShamAqua, I am interested in: ";
 
 const INR_FORMAT = new Intl.NumberFormat('en-IN', {
   style: 'currency',

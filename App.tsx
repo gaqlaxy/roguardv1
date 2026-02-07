@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -9,11 +10,11 @@ import Footer from './components/Footer';
 import WhatsAppFloat from './components/WhatsAppFloat';
 import Blog from './components/Blog';
 import Comparison from './components/Comparison';
-import { ViewState } from './types';
 import { PRODUCTS } from './constants';
 
 const App: React.FC = () => {
-  const [view, setView] = useState<ViewState>('HOME');
+  const location = useLocation();
+  const navigate = useNavigate();
   const [compareList, setCompareList] = useState<string[]>([]);
 
   const scrollToSection = (id: string) => {
@@ -23,10 +24,9 @@ const App: React.FC = () => {
     }
   };
 
-  const handleNavigate = (newView: ViewState) => {
-    // When switching views, scroll to top
+  const handleNavigate = (path: string) => {
     window.scrollTo({ top: 0, behavior: 'auto' });
-    setView(newView);
+    navigate(path);
   };
 
   const toggleCompare = (id: string) => {
@@ -50,63 +50,70 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
       <Navbar 
-        currentView={view} 
+        currentPath={location.pathname}
         onNavigate={handleNavigate}
         onScrollToSection={scrollToSection}
         compareCount={compareList.length}
       />
       
       <main>
-        {view === 'HOME' && (
-          <>
-            <Hero onCtaClick={() => scrollToSection('contact')} />
-            <About />
-            <Products 
-              viewMode="HOME" 
-              onViewAll={() => handleNavigate('ALL_PRODUCTS')} 
-              selectedForCompare={compareList}
-              toggleCompare={toggleCompare}
-            />
-            <Testimonials />
-            <ContactCTA />
-          </>
-        )}
-
-        {view === 'ALL_PRODUCTS' && (
-          <div className="pt-20">
-            <div className="bg-slate-900 py-12 text-center">
-              <h1 className="text-3xl font-bold text-white">Our Complete Catalog</h1>
-              <p className="text-gray-400 mt-2">Find the perfect purification system for your needs</p>
-            </div>
-            <Products 
-              viewMode="ALL_PRODUCTS" 
-              onViewAll={() => {}} // No-op in all view
-              selectedForCompare={compareList}
-              toggleCompare={toggleCompare}
-            />
-            <ContactCTA />
-          </div>
-        )}
-
-        {view === 'BLOG' && (
-           <Blog />
-        )}
-
-        {view === 'COMPARE' && (
-          <div className="pt-20">
-            <Comparison 
-              products={comparisonProducts} 
-              onRemove={toggleCompare} 
-              onClear={clearCompare} 
-            />
-            <div className="bg-white">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Hero onCtaClick={() => scrollToSection('contact')} />
+                <About />
+                <Products 
+                  viewMode="HOME" 
+                  onViewAll={() => handleNavigate('/products')} 
+                  selectedForCompare={compareList}
+                  toggleCompare={toggleCompare}
+                />
+                <Testimonials />
                 <ContactCTA />
-            </div>
-          </div>
-        )}
+              </>
+            }
+          />
+          <Route
+            path="/products"
+            element={
+              <div className="pt-20">
+                <div className="bg-slate-900 py-12 text-center">
+                  <h1 className="text-3xl font-bold text-white">Our Complete Catalog</h1>
+                  <p className="text-gray-400 mt-2">Find the perfect purification system for your needs</p>
+                </div>
+                <Products 
+                  viewMode="ALL_PRODUCTS" 
+                  onViewAll={() => {}} 
+                  selectedForCompare={compareList}
+                  toggleCompare={toggleCompare}
+                />
+                <ContactCTA />
+              </div>
+            }
+          />
+          <Route path="/blog" element={<Blog />} />
+          <Route
+            path="/compare"
+            element={
+              <div className="pt-20">
+                <Comparison 
+                  products={comparisonProducts} 
+                  onRemove={toggleCompare} 
+                  onClear={clearCompare} 
+                />
+                <div className="bg-white">
+                    <ContactCTA />
+                </div>
+              </div>
+            }
+          />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
       </main>
 
-      <Footer />
+      <Footer onNavigate={handleNavigate} onScrollToSection={scrollToSection} />
       <WhatsAppFloat />
     </div>
   );

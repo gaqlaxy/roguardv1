@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { PRODUCTS, formatPrice } from '../constants';
-import { Product, ViewState } from '../types';
+import { Product, ProductViewMode } from '../types';
 import { ArrowRight, Eye, Star, Scale } from 'lucide-react';
 import ProductModal from './ProductModal';
 
 interface ProductsProps {
-  viewMode: ViewState;
+  viewMode: ProductViewMode;
   onViewAll: () => void;
   selectedForCompare: string[];
   toggleCompare: (id: string) => void;

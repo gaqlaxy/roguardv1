@@ -37,4 +37,4 @@ export type BlogContentBlock =
   | { type: 'h3'; text: string }
   | { type: 'ul'; items: string[] };
 
-export type ViewState = 'HOME' | 'ALL_PRODUCTS' | 'COMPARE' | 'BLOG';
+export type ProductViewMode = 'HOME' | 'ALL_PRODUCTS';

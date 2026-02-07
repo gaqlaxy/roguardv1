@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Phone, Mail, MapPin, Send, CheckCircle, Loader2 } from 'lucide-react';
 import { COMPANY_PHONE } from '../constants';
 
@@ -10,9 +10,19 @@ const ContactCTA: React.FC = () => {
     message: ''
   });
   const [status, setStatus] = useState<'IDLE' | 'LOADING' | 'SUCCESS'>('IDLE');
+  const [botField, setBotField] = useState('');
+  const lastSubmitRef = useRef(0);
+  const formStartRef = useRef(Date.now());
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const now = Date.now();
+    const isTooFast = now - formStartRef.current < 2000;
+    const isTooSoon = now - lastSubmitRef.current < 10000;
+    if (botField.trim() !== '' || isTooFast || isTooSoon) {
+      return;
+    }
+    lastSubmitRef.current = now;
     setStatus('LOADING');
 
     const message = [
@@ -25,7 +35,10 @@ const ContactCTA: React.FC = () => {
     const url = `https://wa.me/${COMPANY_PHONE}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
 
-    setTimeout(() => setStatus('SUCCESS'), 400);
+    setTimeout(() => {
+      setStatus('SUCCESS');
+      formStartRef.current = Date.now();
+    }, 400);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -102,6 +115,8 @@ const ContactCTA: React.FC = () => {
                     onClick={() => {
                       setStatus('IDLE');
                       setFormState({ name: '', phone: '', service: 'New Product Enquiry', message: '' });
+                      setBotField('');
+                      formStartRef.current = Date.now();
                     }}
                     className="mt-6 text-brand-600 font-semibold hover:underline"
                   >
@@ -111,6 +126,19 @@ const ContactCTA: React.FC = () => {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <h3 className="text-2xl font-bold text-gray-900 mb-6">Send Enquiry</h3>
+
+                  <div className="absolute -left-[9999px]" aria-hidden="true">
+                    <label htmlFor="company">Company</label>
+                    <input
+                      type="text"
+                      id="company"
+                      name="company"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={botField}
+                      onChange={(e) => setBotField(e.target.value)}
+                    />
+                  </div>
                   
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
@@ -136,10 +164,12 @@ const ContactCTA: React.FC = () => {
                         required
                         pattern="[0-9]{10}"
                         title="Please enter a valid 10-digit number"
+                        inputMode="numeric"
+                        autoComplete="tel"
                         value={formState.phone}
                         onChange={handleChange}
                         className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all"
-                        placeholder="98765 43210"
+                        placeholder="9876543210"
                       />
                     </div>
                     <div>

@@ -1,57 +1,65 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X, Droplet, Scale } from 'lucide-react';
-import { ViewState } from '../types';
-
+import React, { useState, useEffect } from "react";
+import { Menu, X, Droplet, Scale } from "lucide-react";
 interface NavbarProps {
-  currentView: ViewState;
-  onNavigate: (view: ViewState) => void;
+  currentPath: string;
+  onNavigate: (path: string) => void;
   onScrollToSection: (id: string) => void;
   compareCount: number;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigate, onScrollToSection, compareCount }) => {
+const Navbar: React.FC<NavbarProps> = ({
+  currentPath,
+  onNavigate,
+  onScrollToSection,
+  compareCount,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const isHome = currentPath === "/";
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleLinkClick = (id: string, view: ViewState = 'HOME') => {
+  const handleLinkClick = (path: string, sectionId?: string) => {
     setIsOpen(false);
-    onNavigate(view);
-    if (view === 'HOME' && id !== 'hero') {
-      setTimeout(() => onScrollToSection(id), 100);
+    onNavigate(path);
+    if (path === "/" && sectionId && sectionId !== "hero") {
+      setTimeout(() => onScrollToSection(sectionId), 100);
     } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
   const navLinks = [
-    { name: 'Home', id: 'hero', view: 'HOME' as ViewState },
-    { name: 'About', id: 'about', view: 'HOME' as ViewState },
-    { name: 'Products', id: 'products', view: 'HOME' as ViewState },
-    { name: 'Blog', id: 'blog', view: 'BLOG' as ViewState },
-    { name: 'Testimonials', id: 'testimonials', view: 'HOME' as ViewState },
+    { name: "Home", sectionId: "hero", path: "/" },
+    { name: "About", sectionId: "about", path: "/" },
+    { name: "Products", sectionId: "products", path: "/" },
+    { name: "Blog", path: "/blog" },
+    { name: "Testimonials", sectionId: "testimonials", path: "/" },
   ];
 
   return (
-    <nav className={`fixed w-full z-40 transition-all duration-300 ${isScrolled || currentView !== 'HOME' ? 'bg-white shadow-md py-3' : 'bg-transparent py-5'}`}>
+    <nav
+      className={`fixed w-full z-40 transition-all duration-300 ${isScrolled || !isHome ? "bg-white shadow-md py-3" : "bg-transparent py-5"}`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
-          <div 
-            className="flex items-center cursor-pointer" 
-            onClick={() => handleLinkClick('hero', 'HOME')}
+          <div
+            className="flex items-center cursor-pointer"
+            onClick={() => handleLinkClick("/", "hero")}
           >
             <div className="bg-brand-600 p-2 rounded-lg text-white mr-2">
               <Droplet size={24} fill="currentColor" />
             </div>
-            <span className={`text-2xl font-bold ${isScrolled || currentView !== 'HOME' ? 'text-gray-900' : 'text-gray-900 lg:text-white'}`}>
-              SHAM<span className="text-brand-600"> Aqua</span>
+            <span
+              className={`text-2xl font-bold ${isScrolled || !isHome ? "text-gray-900" : "text-gray-900 lg:text-white"}`}
+            >
+              Sham <span className="text-brand-600">Aqua</span>
             </span>
           </div>
 
@@ -60,9 +68,11 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigate, onScrollToSect
             {navLinks.map((link) => (
               <button
                 key={link.name}
-                onClick={() => handleLinkClick(link.id, link.view)}
+                onClick={() => handleLinkClick(link.path, link.sectionId)}
                 className={`text-sm font-medium transition-colors hover:text-brand-600 ${
-                  isScrolled || currentView !== 'HOME' ? 'text-gray-700' : 'text-gray-200 hover:text-white'
+                  isScrolled || !isHome
+                    ? "text-gray-700"
+                    : "text-gray-200 hover:text-white"
                 }`}
               >
                 {link.name}
@@ -71,17 +81,19 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigate, onScrollToSect
 
             {/* Comparison Badge */}
             {compareCount > 0 && (
-              <button 
-                onClick={() => onNavigate('COMPARE')}
+              <button
+                onClick={() => onNavigate("/compare")}
                 className="flex items-center space-x-1 bg-indigo-50 text-indigo-700 px-3 py-1.5 rounded-full border border-indigo-200 hover:bg-indigo-100 transition-colors animate-fade-in"
               >
                 <Scale size={16} />
-                <span className="text-xs font-bold">Compare ({compareCount})</span>
+                <span className="text-xs font-bold">
+                  Compare ({compareCount})
+                </span>
               </button>
             )}
 
-            <button 
-              onClick={() => handleLinkClick('contact', 'HOME')}
+            <button
+              onClick={() => handleLinkClick("/", "contact")}
               className="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2 rounded-full text-sm font-medium transition-transform hover:scale-105 shadow-md shadow-brand-200"
             >
               Get Service
@@ -90,22 +102,22 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigate, onScrollToSect
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-4">
-             {/* Mobile Comparison Badge */}
-             {compareCount > 0 && (
-              <button 
-                onClick={() => onNavigate('COMPARE')}
+            {/* Mobile Comparison Badge */}
+            {compareCount > 0 && (
+              <button
+                onClick={() => onNavigate("/compare")}
                 className="flex items-center justify-center w-8 h-8 bg-indigo-100 text-indigo-700 rounded-full"
               >
                 <Scale size={18} />
                 <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">
-                    {compareCount}
+                  {compareCount}
                 </span>
               </button>
             )}
 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`p-2 rounded-md ${isScrolled || currentView !== 'HOME' ? 'text-gray-700' : 'text-gray-900'}`}
+              className={`p-2 rounded-md ${isScrolled || !isHome ? "text-gray-700" : "text-gray-900"}`}
               aria-label="Menu"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -121,14 +133,14 @@ const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigate, onScrollToSect
             {navLinks.map((link) => (
               <button
                 key={link.name}
-                onClick={() => handleLinkClick(link.id, link.view)}
+                onClick={() => handleLinkClick(link.path, link.sectionId)}
                 className="block w-full text-left px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:text-brand-600 hover:bg-gray-50"
               >
                 {link.name}
               </button>
             ))}
-             <button 
-              onClick={() => handleLinkClick('contact', 'HOME')}
+            <button
+              onClick={() => handleLinkClick("/", "contact")}
               className="block w-full text-left px-3 py-3 rounded-md text-base font-bold text-brand-600 bg-brand-50"
             >
               Get Service / Contact

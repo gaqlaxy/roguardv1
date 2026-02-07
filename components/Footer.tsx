@@ -1,7 +1,21 @@
 import React from "react";
 import { Droplet, Facebook, Instagram, Twitter } from "lucide-react";
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  onNavigate: (path: string) => void;
+  onScrollToSection: (id: string) => void;
+}
+
+const Footer: React.FC<FooterProps> = ({ onNavigate, onScrollToSection }) => {
+  const handleLinkClick = (path: string, sectionId?: string) => {
+    onNavigate(path);
+    if (path === "/" && sectionId && sectionId !== "hero") {
+      setTimeout(() => onScrollToSection(sectionId), 100);
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <footer className="bg-slate-900 text-slate-300 py-12 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,7 +28,7 @@ const Footer: React.FC = () => {
                 fill="currentColor"
               />
               <span className="text-2xl font-bold">
-                RO<span className="text-brand-500">Guard</span>
+                Sham<span className="text-brand-500">Aqua</span>
               </span>
             </div>
             <p className="text-sm text-slate-400">
@@ -27,36 +41,40 @@ const Footer: React.FC = () => {
             <h4 className="text-white font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a
-                  href="#hero"
+                <button
+                  type="button"
+                  onClick={() => handleLinkClick("/", "hero")}
                   className="hover:text-brand-400 transition-colors"
                 >
                   Home
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  href="#about"
+                <button
+                  type="button"
+                  onClick={() => handleLinkClick("/", "about")}
                   className="hover:text-brand-400 transition-colors"
                 >
                   About Us
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  href="#products"
+                <button
+                  type="button"
+                  onClick={() => handleLinkClick("/", "products")}
                   className="hover:text-brand-400 transition-colors"
                 >
                   Products
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  href="#testimonials"
+                <button
+                  type="button"
+                  onClick={() => handleLinkClick("/", "testimonials")}
                   className="hover:text-brand-400 transition-colors"
                 >
                   Reviews
-                </a>
+                </button>
               </li>
             </ul>
           </div>
@@ -65,36 +83,40 @@ const Footer: React.FC = () => {
             <h4 className="text-white font-semibold mb-4">Services</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a
-                  href="#contact"
+                <button
+                  type="button"
+                  onClick={() => handleLinkClick("/", "contact")}
                   className="hover:text-brand-400 transition-colors"
                 >
                   RO Installation
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  href="#contact"
+                <button
+                  type="button"
+                  onClick={() => handleLinkClick("/", "contact")}
                   className="hover:text-brand-400 transition-colors"
                 >
                   Annual Maintenance
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  href="#contact"
+                <button
+                  type="button"
+                  onClick={() => handleLinkClick("/", "contact")}
                   className="hover:text-brand-400 transition-colors"
                 >
                   Filter Replacement
-                </a>
+                </button>
               </li>
               <li>
-                <a
-                  href="#contact"
+                <button
+                  type="button"
+                  onClick={() => handleLinkClick("/", "contact")}
                   className="hover:text-brand-400 transition-colors"
                 >
                   Water Testing
-                </a>
+                </button>
               </li>
             </ul>
           </div>
