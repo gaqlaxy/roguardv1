@@ -1,4 +1,4 @@
-import { Product, Testimonial, BlogPost } from './types';
+import { Product, Testimonial, BlogPost, ServicePlan } from './types';
 
 export const COMPANY_PHONE = "919150236680"; // Example International Format
 export const WHATSAPP_MESSAGE_PRE = "Hello ShamAqua, I am interested in: ";
@@ -10,6 +10,73 @@ const INR_FORMAT = new Intl.NumberFormat('en-IN', {
 });
 
 export const formatPrice = (value: number) => INR_FORMAT.format(value);
+
+export const SERVICE_PLANS: ServicePlan[] = [
+  {
+    id: 's1',
+    title: 'General Service',
+    price: 399,
+    period: 'per visit',
+    description: 'Complete check-up and cleaning of your RO system. Recommended every 6 months.',
+    features: [
+      'Filter Cleaning',
+      'TDS Check & Adjustment',
+      'Leakage Check',
+      'Electrical Parts Check',
+      'Membrane Flushing'
+    ],
+    isPopular: false,
+    buttonText: 'Book Service'
+  },
+  {
+    id: 's2',
+    title: 'Silver AMC Plan',
+    price: 2499,
+    period: 'per year',
+    description: 'Annual maintenance coverage for peace of mind. Covers all labour charges.',
+    features: [
+      '2 Preventive Maintenance Services',
+      'Unlimited Breakdown Calls',
+      'No Labour Charges',
+      'Filter Discount (10%)',
+      'Priority Support'
+    ],
+    isPopular: true,
+    buttonText: 'Get AMC Now'
+  },
+  {
+    id: 's3',
+    title: 'Gold AMC Plan',
+    price: 4999,
+    period: 'per year',
+    description: 'Comprehensive coverage including all filters and spares. Zero hidden costs.',
+    features: [
+      'Unlimited Maintenance Visits',
+      'Free Filter Changes (Sediment+Carbon)',
+      'Free Membrane Replacement (1/yr)',
+      'Spare Parts Included',
+      'Digital Health Report'
+    ],
+    isPopular: false,
+    buttonText: 'Go Premium'
+  },
+  {
+    id: 's4',
+    title: 'Installation / Shift',
+    price: 599,
+    period: 'one time',
+    description: 'Professional installation or uninstallation when you move houses.',
+    features: [
+      'Professional Mounting',
+      'Inlet/Outlet Connection',
+      'Leakage Testing',
+      'Demonstration',
+      '30-Day Service Warranty'
+    ],
+    isPopular: false,
+    buttonText: 'Book Expert'
+  }
+];
 
 export const PRODUCTS: Product[] = [
   {

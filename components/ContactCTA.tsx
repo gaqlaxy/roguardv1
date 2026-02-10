@@ -6,7 +6,7 @@ const ContactCTA: React.FC = () => {
   const [formState, setFormState] = useState({
     name: '',
     phone: '',
-    service: 'New Product Enquiry',
+    service: 'Repair & Service',
     message: ''
   });
   const [status, setStatus] = useState<'IDLE' | 'LOADING' | 'SUCCESS'>('IDLE');
@@ -56,7 +56,7 @@ const ContactCTA: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="bg-brand-800 rounded-3xl p-6 md:p-12 shadow-2xl flex flex-col lg:flex-row items-start justify-between border border-brand-700 gap-12">
-          
+
           {/* Contact Info Side */}
           <div className="lg:w-5/12 text-center lg:text-left pt-4">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
@@ -65,7 +65,7 @@ const ContactCTA: React.FC = () => {
             <p className="text-brand-100 text-lg mb-8 leading-relaxed">
               Have questions about our RO purifiers or need to schedule a service? Fill out the form, and our expert team will get back to you shortly.
             </p>
-            
+
             <div className="flex flex-col space-y-6">
               <div className="flex items-center justify-center lg:justify-start text-brand-200 group">
                 <div className="p-3 bg-brand-700/50 rounded-full mr-4 group-hover:bg-brand-700 transition-colors">
@@ -76,7 +76,7 @@ const ContactCTA: React.FC = () => {
                   <p className="text-lg font-medium text-white">+91 91502 36680</p>
                 </div>
               </div>
-              
+
               <div className="flex items-center justify-center lg:justify-start text-brand-200 group">
                 <div className="p-3 bg-brand-700/50 rounded-full mr-4 group-hover:bg-brand-700 transition-colors">
                   <Mail size={24} />
@@ -86,7 +86,7 @@ const ContactCTA: React.FC = () => {
                   <p className="text-lg font-medium text-white">support@shamaquaclassictech.com</p>
                 </div>
               </div>
-              
+
               <div className="flex items-center justify-center lg:justify-start text-brand-200 group">
                 <div className="p-3 bg-brand-700/50 rounded-full mr-4 group-hover:bg-brand-700 transition-colors">
                   <MapPin size={24} />
@@ -111,10 +111,10 @@ const ContactCTA: React.FC = () => {
                   <p className="text-gray-600">
                     Thank you, {formState.name}. We have received your details and will call you within 15 minutes.
                   </p>
-                  <button 
+                  <button
                     onClick={() => {
                       setStatus('IDLE');
-                      setFormState({ name: '', phone: '', service: 'New Product Enquiry', message: '' });
+                      setFormState({ name: '', phone: '', service: 'Repair & Service', message: '' });
                       setBotField('');
                       formStartRef.current = Date.now();
                     }}
@@ -139,7 +139,7 @@ const ContactCTA: React.FC = () => {
                       onChange={(e) => setBotField(e.target.value)}
                     />
                   </div>
-                  
+
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
                     <input
@@ -203,7 +203,7 @@ const ContactCTA: React.FC = () => {
                     ></textarea>
                   </div>
 
-                  <button 
+                  <button
                     type="submit"
                     disabled={status === 'LOADING'}
                     className="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-4 rounded-xl shadow-lg shadow-brand-200 transition-all flex items-center justify-center mt-2 disabled:opacity-70 disabled:cursor-not-allowed"
@@ -215,7 +215,7 @@ const ContactCTA: React.FC = () => {
                     )}
                     {status === 'LOADING' ? 'Sending...' : 'Send Enquiry'}
                   </button>
-                  
+
                   <p className="text-xs text-center text-gray-400 mt-4">
                     Your details are safe with us. No spam.
                   </p>

@@ -10,10 +10,14 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
     <section id="hero" className="relative h-screen min-h-[600px] flex items-center bg-slate-900 overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        <img 
-          src="https://images.unsplash.com/photo-1548839140-29a749e1cf4d?q=80&w=2500&auto=format&fit=crop" 
-          alt="Clean refreshing water background" 
+        <img
+          src="https://images.unsplash.com/photo-1581092921461-eab62e97a783?q=80&w=2500&auto=format&fit=crop"
+          alt="Professional technician repairing RO purifier"
           className="w-full h-full object-cover opacity-60"
+          width="2500"
+          height="1667"
+          fetchPriority="high"
+          decoding="sync"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/60 to-transparent"></div>
       </div>
@@ -25,33 +29,34 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
             </span>
-            <span className="text-brand-300 text-sm font-medium tracking-wide">#1 Rated Water Service in City</span>
+            <span className="text-brand-300 text-sm font-medium tracking-wide">#1 Rated RO Sales & Service</span>
           </div>
-          
+
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-tight mb-6">
-            Pure Water, <br/>
+            Complete RO Solutions: <br />
             <span className=" bg-clip-text bg-gradient-to-r from-brand-400 to-cyan-300">
-              Healthier Life.
+              Sales & Service.
             </span>
           </h1>
-          
+
           <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-xl leading-relaxed">
-            Protect your family from waterborne diseases. Experience the purest drinking water with our advanced RO technology and 24/7 expert maintenance support.
+            Premium new purified systems and professional maintenance.
+            Whether you need a new RO or a fix for your existing one, we have you covered.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4">
-            <button 
+            <button
               onClick={onCtaClick}
               className="group bg-brand-600 hover:bg-brand-700 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all flex items-center justify-center sm:justify-start"
             >
-              Get Free Consultation
+              Book Service
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
             </button>
-            <button 
+            <button
               onClick={() => document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}
               className="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/20 px-8 py-4 rounded-full font-semibold text-lg transition-all"
             >
-              View Products
+              Buy New RO
             </button>
           </div>
 

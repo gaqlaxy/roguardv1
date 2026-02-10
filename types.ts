@@ -37,4 +37,15 @@ export type BlogContentBlock =
   | { type: 'h3'; text: string }
   | { type: 'ul'; items: string[] };
 
+export interface ServicePlan {
+  id: string;
+  title: string;
+  price: number;
+  period: string; // e.g., "per visit", "per year"
+  description: string;
+  features: string[];
+  isPopular: boolean;
+  buttonText: string;
+}
+
 export type ProductViewMode = 'HOME' | 'ALL_PRODUCTS';

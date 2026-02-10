@@ -37,10 +37,10 @@ const Navbar: React.FC<NavbarProps> = ({
 
   const navLinks = [
     { name: "Home", sectionId: "hero", path: "/" },
-    { name: "About", sectionId: "about", path: "/" },
+    { name: "Services", sectionId: "services", path: "/" },
     { name: "Products", sectionId: "products", path: "/" },
+    { name: "About", sectionId: "about", path: "/" },
     { name: "Blog", path: "/blog" },
-    { name: "Testimonials", sectionId: "testimonials", path: "/" },
   ];
 
   return (
@@ -69,11 +69,10 @@ const Navbar: React.FC<NavbarProps> = ({
               <button
                 key={link.name}
                 onClick={() => handleLinkClick(link.path, link.sectionId)}
-                className={`text-sm font-medium transition-colors hover:text-brand-600 ${
-                  isScrolled || !isHome
-                    ? "text-gray-700"
-                    : "text-gray-200 hover:text-white"
-                }`}
+                className={`text-sm font-medium transition-colors hover:text-brand-600 ${isScrolled || !isHome
+                  ? "text-gray-700"
+                  : "text-gray-200 hover:text-white"
+                  }`}
               >
                 {link.name}
               </button>
@@ -96,7 +95,7 @@ const Navbar: React.FC<NavbarProps> = ({
               onClick={() => handleLinkClick("/", "contact")}
               className="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2 rounded-full text-sm font-medium transition-transform hover:scale-105 shadow-md shadow-brand-200"
             >
-              Get Service
+              Book / Buy
             </button>
           </div>
 
