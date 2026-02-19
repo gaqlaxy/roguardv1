@@ -57,7 +57,7 @@ const Navbar: React.FC<NavbarProps> = ({
               <Droplet size={24} fill="currentColor" />
             </div>
             <span
-              className={`text-2xl font-bold ${isScrolled || !isHome ? "text-gray-900" : "text-gray-900 lg:text-white"}`}
+              className="text-2xl font-bold text-slate-900"
             >
               Sham <span className="text-brand-600">Aqua</span>
             </span>
@@ -69,10 +69,7 @@ const Navbar: React.FC<NavbarProps> = ({
               <button
                 key={link.name}
                 onClick={() => handleLinkClick(link.path, link.sectionId)}
-                className={`text-sm font-medium transition-colors hover:text-brand-600 ${isScrolled || !isHome
-                  ? "text-gray-700"
-                  : "text-gray-200 hover:text-white"
-                  }`}
+                className="text-sm font-medium transition-colors text-slate-600 hover:text-brand-600"
               >
                 {link.name}
               </button>

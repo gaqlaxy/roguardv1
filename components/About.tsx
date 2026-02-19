@@ -80,9 +80,18 @@ const About: React.FC = () => {
 
           <div className="order-1 lg:order-2 relative">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
-              <img
-                src="https://images.unsplash.com/photo-1662647344062-b0cdb1ed7227?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              {/* <img
+                src="/about.png"
                 alt="Technician repairing RO filter"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              /> */}
+
+              {/* Add Video here  */}
+              <video
+                src="/aquaabout.webm"
+                autoPlay
+                muted
+                loop
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>

@@ -1,7 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { X, Check, MessageCircle, Droplet, Zap, Ruler } from 'lucide-react';
 import { Product } from '../types';
-import { COMPANY_PHONE, WHATSAPP_MESSAGE_PRE, formatPrice } from '../constants';
+import { formatPrice } from '../constants';
+import EnquiryModal from './EnquiryModal';
 
 interface ProductModalProps {
   product: Product;
@@ -11,6 +12,7 @@ interface ProductModalProps {
 const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
   const dialogRef = useRef<HTMLDivElement | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
+  const [showEnquiry, setShowEnquiry] = useState(false);
 
   useEffect(() => {
     document.body.classList.add('no-scroll');
@@ -18,6 +20,10 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
+        if (showEnquiry) {
+          setShowEnquiry(false);
+          return;
+        }
         onClose();
       }
 
@@ -50,19 +56,15 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
       document.body.classList.remove('no-scroll');
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [onClose]);
-  const handleEnquiry = () => {
-    const text = encodeURIComponent(`${WHATSAPP_MESSAGE_PRE} ${product.name}`);
-    window.open(`https://wa.me/${COMPANY_PHONE}?text=${text}`, '_blank');
-  };
+  }, [onClose, showEnquiry]);
 
   return (
     <div className="fixed inset-0 z-[10000] flex items-center justify-center p-4 sm:p-6">
-      <div 
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" 
+      <div
+        className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
         onClick={onClose}
       ></div>
-      
+
       <div
         ref={dialogRef}
         role="dialog"
@@ -70,9 +72,9 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
         aria-labelledby="product-modal-title"
         className="relative bg-white rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto flex flex-col md:flex-row animate-fade-in-up"
       >
-        
+
         {/* Close Button */}
-        <button 
+        <button
           ref={closeButtonRef}
           onClick={onClose}
           className="absolute top-4 right-4 z-10 p-2 bg-white/80 rounded-full hover:bg-gray-100 transition-colors"
@@ -82,13 +84,13 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
 
         {/* Image Section */}
         <div className="w-full md:w-1/2 bg-gray-50 flex items-center justify-center p-8">
-            <div className="relative w-full aspect-square max-w-sm mx-auto">
-                <img 
-                    src={product.image} 
-                    alt={product.name} 
-                    className="w-full h-full object-cover rounded-xl shadow-lg mix-blend-multiply" 
-                />
-            </div>
+          <div className="relative w-full aspect-square max-w-sm mx-auto">
+            <img
+              src={product.image}
+              alt={product.name}
+              className="w-full h-full object-cover rounded-xl shadow-lg mix-blend-multiply"
+            />
+          </div>
         </div>
 
         {/* Content Section */}
@@ -96,7 +98,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
           <div className="mb-auto">
             <h3 className="text-sm font-bold text-brand-600 uppercase tracking-wide mb-1">RO Purifier</h3>
             <h2 id="product-modal-title" className="text-3xl font-bold text-gray-900 mb-2">{product.name}</h2>
-            
+
             <div className="flex items-center space-x-3 mb-6">
               <span className="text-2xl font-bold text-gray-900">{formatPrice(product.price)}</span>
               {product.originalPrice && (
@@ -117,15 +119,15 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
             <div className="grid grid-cols-2 gap-4 mb-6">
               <div className="bg-slate-50 p-3 rounded-lg border border-slate-100">
                 <div className="flex items-center text-gray-500 mb-1">
-                    <Ruler size={16} className="mr-2" />
-                    <span className="text-xs font-medium uppercase">Capacity</span>
+                  <Ruler size={16} className="mr-2" />
+                  <span className="text-xs font-medium uppercase">Capacity</span>
                 </div>
                 <span className="font-semibold text-gray-900">{product.capacity}</span>
               </div>
               <div className="bg-slate-50 p-3 rounded-lg border border-slate-100">
                 <div className="flex items-center text-gray-500 mb-1">
-                    <Zap size={16} className="mr-2" />
-                    <span className="text-xs font-medium uppercase">Technology</span>
+                  <Zap size={16} className="mr-2" />
+                  <span className="text-xs font-medium uppercase">Technology</span>
                 </div>
                 <span className="font-semibold text-gray-900">{product.filtrationStages} Stages</span>
               </div>
@@ -144,18 +146,25 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
             </div>
           </div>
 
-          <button 
-            onClick={handleEnquiry}
+          <button
+            onClick={() => setShowEnquiry(true)}
             className="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-4 rounded-xl shadow-lg shadow-brand-200 transition-all flex items-center justify-center gap-2"
           >
             <MessageCircle size={20} />
             Send Enquiry
           </button>
           <p className="text-center text-xs text-gray-400 mt-3">
-            Secure inquiry via WhatsApp. No payment required online.
+            Secure inquiry via WhatsApp, Phone or Email.
           </p>
         </div>
       </div>
+
+      {showEnquiry && (
+        <EnquiryModal
+          product={product}
+          onClose={() => setShowEnquiry(false)}
+        />
+      )}
     </div>
   );
 };

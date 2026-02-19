@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { PRODUCTS, formatPrice } from '../constants';
 import { Product, ProductViewMode } from '../types';
-import { ArrowRight, Eye, Star, Scale } from 'lucide-react';
+import { ArrowRight, Eye, Star, Scale, MessageCircle } from 'lucide-react';
 import ProductModal from './ProductModal';
+import EnquiryModal from './EnquiryModal';
 
 interface ProductsProps {
   viewMode: ProductViewMode;
@@ -13,6 +14,7 @@ interface ProductsProps {
 
 const Products: React.FC<ProductsProps> = ({ viewMode, onViewAll, selectedForCompare, toggleCompare }) => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [enquiryProduct, setEnquiryProduct] = useState<Product | null>(null);
 
   // If on Home view, show only top 3 featured. If on All view, show everything.
   const displayProducts = viewMode === 'HOME'
@@ -77,8 +79,8 @@ const Products: React.FC<ProductsProps> = ({ viewMode, onViewAll, selectedForCom
                         toggleCompare(product.id);
                       }}
                       className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold shadow-sm transition-colors ${isSelected
-                          ? 'bg-indigo-600 text-white border-indigo-600'
-                          : 'bg-white/80 backdrop-blur-sm text-gray-700 hover:bg-white border border-gray-200'
+                        ? 'bg-indigo-600 text-white border-indigo-600'
+                        : 'bg-white/80 backdrop-blur-sm text-gray-700 hover:bg-white border border-gray-200'
                         }`}
                     >
                       <Scale size={14} />
@@ -86,13 +88,19 @@ const Products: React.FC<ProductsProps> = ({ viewMode, onViewAll, selectedForCom
                     </button>
                   </div>
 
-                  {/* Overlay Action */}
-                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
+                  {/* Overlay Actions */}
+                  <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 backdrop-blur-[2px]">
                     <button
                       onClick={() => setSelectedProduct(product)}
-                      className="bg-white text-gray-900 px-6 py-3 rounded-full font-semibold shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform flex items-center"
+                      className="bg-white hover:bg-gray-50 text-gray-900 px-5 py-3 rounded-full font-semibold shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform flex items-center text-sm"
                     >
-                      <Eye size={18} className="mr-2" /> Quick View
+                      <Eye size={16} className="mr-2" /> Quick View
+                    </button>
+                    <button
+                      onClick={() => setEnquiryProduct(product)}
+                      className="bg-brand-600 hover:bg-brand-700 text-white px-5 py-3 rounded-full font-semibold shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform delay-75 flex items-center text-sm"
+                    >
+                      <MessageCircle size={16} className="mr-2" /> Enquiry
                     </button>
                   </div>
                 </div>
@@ -144,6 +152,13 @@ const Products: React.FC<ProductsProps> = ({ viewMode, onViewAll, selectedForCom
         <ProductModal
           product={selectedProduct}
           onClose={() => setSelectedProduct(null)}
+        />
+      )}
+
+      {enquiryProduct && (
+        <EnquiryModal
+          product={enquiryProduct}
+          onClose={() => setEnquiryProduct(null)}
         />
       )}
     </section>
