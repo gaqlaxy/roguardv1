@@ -161,12 +161,12 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, onScrollToSection }) => {
             reserved.
           </p>
           <div className="flex space-x-4 mt-4 md:mt-0">
-            <a href="#" className="hover:text-slate-300">
+            <button type="button" className="hover:text-slate-300">
               Privacy Policy
-            </a>
-            <a href="#" className="hover:text-slate-300">
+            </button>
+            <button type="button" className="hover:text-slate-300">
               Terms of Service
-            </a>
+            </button>
           </div>
         </div>
       </div>

@@ -95,11 +95,14 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-brand-100 to-cyan-100 rounded-full blur-[60px] -z-10"></div>
 
             {/* Main Image Container */}
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-brand-100/50 border border-white/50">
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-brand-100/50 border border-white/50 aspect-[4/3]">
               <img
                 src="/about.png"
                 alt="Modern Water Purifier"
-                className="w-full h-auto object-cover hover:scale-105 transition-transform duration-700"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                loading="eager"
+                decoding="async"
+                fetchPriority="high"
               />
 
               {/* Glass Card Overlay */}

@@ -21,6 +21,8 @@ const Blog: React.FC = () => {
             src={activePost.image} 
             alt={activePost.title} 
             className="w-full h-64 md:h-96 object-cover rounded-2xl shadow-lg mb-8"
+            loading="eager"
+            decoding="async"
           />
 
           <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-6">
@@ -99,6 +101,8 @@ const Blog: React.FC = () => {
                   src={post.image} 
                   alt={post.title} 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-brand-600">
                   {post.tags[0]}
