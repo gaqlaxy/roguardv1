@@ -33,7 +33,7 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
             </span>
-            <span className="text-slate-600 text-sm font-medium tracking-wide">Trusted by 5,000+ Homes</span>
+            <span className="text-slate-600 text-sm font-medium tracking-wide">Trusted by 1,000+ Homes</span>
           </div>
 
           <h1 className="text-5xl lg:text-7xl font-bold text-slate-900 leading-[1.1] mb-6 tracking-tight">

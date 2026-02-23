@@ -187,95 +187,93 @@ export const TESTIMONIALS: Testimonial[] = [
 export const BLOG_POSTS: BlogPost[] = [
   {
     id: 'b1',
-    title: '5 Signs You Need to Change Your RO Filter Immediately',
-    excerpt: 'Is your water tasting funny? Learn the key indicators that suggest your purifier needs maintenance.',
-    date: 'Oct 12, 2023',
-    author: 'Rahul Verma, Technician',
+    title: 'RO Maintenance Timeline: What to Check Monthly, Replace Yearly',
+    excerpt: 'A simple schedule to keep your RO water purifier running efficiently and safely.',
+    date: 'Jul 29, 2025',
+    author: 'Service Desk',
     image: 'https://images.unsplash.com/photo-1546552202-b2f5670845cc?auto=format&fit=crop&q=80&w=800',
-    tags: ['Maintenance', 'Health'],
+    tags: ['Maintenance', 'Schedule'],
     content: [
       {
         type: 'p',
-        text: 'Drinking water is essential for health, but drinking contaminated water from a faulty filter can be dangerous. Here are the top 5 signs your RO filter needs a change:'
-      },
-      {
-        type: 'ul',
-        items: [
-          'Bad Taste or Odor: If your water smells like chlorine or has a metallic taste, the carbon filter is likely exhausted.',
-          'Slow Water Flow: A clogged membrane often reduces water pressure significantly.',
-          'TDS Levels Increasing: Use a TDS meter. If the reading is creeping up, your membrane is failing.',
-          'Filter Change Alarm: Modern purifiers have indicators. Do not ignore them.',
-          'Over 12 Months: Even without symptoms, filters should be changed annually for safety.'
-        ]
+        text: 'RO systems are reliable, but they work best when you follow a simple maintenance rhythm. A little routine care protects water quality, reduces breakdowns, and extends the life of filters and membranes.'
       },
       {
         type: 'p',
-        text: 'Regular maintenance ensures you and your family are always protected from waterborne diseases.'
+        text: 'Monthly: do a quick 5‑minute check. Look under the sink or cabinet for leaks, listen for unusual pump noise, and taste the water. These small checks often catch issues early.'
+      },
+      {
+        type: 'p',
+        text: 'Every 6–12 months: replace pre‑filters and post‑filters based on usage and source water quality. If your water starts tasting flat or the flow slows down, don’t wait for the full interval.'
+      },
+      {
+        type: 'p',
+        text: 'Annually: schedule a full service that includes cleaning, sanitization, TDS testing, and leak checks. This is especially important for families with high daily usage.'
+      },
+      {
+        type: 'p',
+        text: 'Every 2–3 years: most RO membranes need replacement on this cadence, but confirm with TDS readings and service feedback rather than time alone.'
       }
     ]
   },
   {
     id: 'b2',
-    title: 'RO vs. UV vs. UF: Which Purifier is Right for You?',
-    excerpt: 'Confused by the acronyms? We break down the differences to help you make the right choice for your home.',
-    date: 'Nov 05, 2023',
-    author: 'Dr. Anita Roy',
+    title: 'RO vs UV vs UF: A Practical Buyer’s Guide',
+    excerpt: 'How to choose the right purifier based on water source, TDS, and household needs.',
+    date: 'Sep 23, 2025',
+    author: 'Product Team',
     image: 'https://images.unsplash.com/photo-1521405924368-64c5b84bec60?auto=format&fit=crop&q=80&w=800',
     tags: ['Buying Guide', 'Technology'],
     content: [
       {
         type: 'p',
-        text: 'Choosing a water purifier depends largely on the source of your water (Municipal, Borewell, or Tanker). Here is a quick guide:'
+        text: 'Choosing a purifier starts with your water source. Municipal water usually has lower TDS but can carry microbes. Borewell or tanker water often has higher TDS and dissolved salts.'
       },
       { type: 'h3', text: 'RO (Reverse Osmosis)' },
       {
         type: 'p',
-        text: 'Best for high TDS water (above 500 ppm). It removes heavy metals, salts, and fluoride. However, it requires electricity and wastes some water.'
+        text: 'Best for high‑TDS water and areas with dissolved salts or heavy metals. RO removes dissolved impurities but needs electricity and produces wastewater.'
       },
       { type: 'h3', text: 'UV (Ultraviolet)' },
       {
         type: 'p',
-        text: 'Kills bacteria and viruses but does not remove dissolved solids. Good for low TDS municipal water.'
+        text: 'Kills bacteria and viruses, but does not remove dissolved solids. Good for low‑TDS municipal water where microbes are the main concern.'
       },
       { type: 'h3', text: 'UF (Ultra Filtration)' },
       {
         type: 'p',
-        text: 'Works without electricity. Removes bacteria and cysts but not dissolved salts. Good for areas with clean water but uncertain microbial safety.'
+        text: 'Works without electricity and removes bacteria and cysts, but not dissolved salts. Ideal where water is clear but microbial safety is uncertain.'
       },
       {
         type: 'p',
-        text: 'For most Indian households with mixed water supply, a combination of RO + UV is the safest bet.'
+        text: 'In many homes, a combined RO + UV setup offers broad protection: RO handles dissolved solids while UV adds a safety layer against microbes.'
       }
     ]
   },
   {
     id: 'b3',
-    title: 'The Truth About Alkaline Water: Hype or Health?',
-    excerpt: 'Alkaline water is the new trend. Discover the real health benefits and if it is worth the extra cost.',
-    date: 'Dec 01, 2023',
-    author: 'Editorial Team',
+    title: 'Signs Your RO Needs Service: Don’t Ignore These Warnings',
+    excerpt: 'Taste changes, slow flow, and noisy pumps are early signs it’s time for maintenance.',
+    date: 'Aug 10, 2025',
+    author: 'Service Desk',
     image: 'https://images.unsplash.com/photo-1621932953986-15fcf0847135?auto=format&fit=crop&q=80&w=800',
-    tags: ['Health', 'Lifestyle'],
+    tags: ['Maintenance', 'Troubleshooting'],
     content: [
       {
         type: 'p',
-        text: 'Standard RO water tends to be slightly acidic because the purification process removes minerals. Alkaline purifiers add minerals like Calcium and Magnesium back into the water, raising the pH level to 8 or 8.5.'
+        text: 'Most RO problems show up slowly. Catching them early keeps your water safe and avoids larger repair bills.'
       },
       {
         type: 'p',
-        text: 'Benefits claimed:'
-      },
-      {
-        type: 'ul',
-        items: [
-          'Neutralizes acid in the bloodstream.',
-          'Improves metabolism.',
-          'Better hydration due to smaller molecular clusters.'
-        ]
+        text: 'Taste or odor changes are the most common warning. If water starts tasting metallic or smells off, filters are likely overdue.'
       },
       {
         type: 'p',
-        text: 'While scientific consensus is still evolving, many users report better digestion and taste. If you suffer from acidity, an Alkaline RO might be a worthy investment.'
+        text: 'Slow flow or reduced pressure often points to clogged pre‑filters or a stressed membrane. If flow drops suddenly, book a service quickly.'
+      },
+      {
+        type: 'p',
+        text: 'Other signs include unusual pump noise, visible particles in water, or the filter‑change indicator staying on. Even if water looks fine, schedule service if it has been 6–12 months since the last check.'
       }
     ]
   }

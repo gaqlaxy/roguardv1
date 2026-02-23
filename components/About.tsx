@@ -29,7 +29,7 @@ const About: React.FC = () => {
     {
       icon: <Users size={32} className="text-brand-600" />,
       title: "Trusted by Thousands",
-      desc: "Over 5000+ satisfied families rely on ShamAqua for their daily drinking water.",
+      desc: "Over 1000+ satisfied families rely on ShamAqua for their daily drinking water.",
     },
   ];
 
