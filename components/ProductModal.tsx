@@ -60,10 +60,12 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
 
   return (
     <div className="fixed inset-0 z-[10000] flex items-center justify-center p-4 sm:p-6">
-      <div
+      <button
+        type="button"
+        aria-label="Close dialog"
         className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
         onClick={onClose}
-      ></div>
+      />
 
       <div
         ref={dialogRef}
@@ -136,8 +138,8 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
             <div className="mb-8">
               <h4 className="font-semibold text-gray-900 mb-3">Key Features:</h4>
               <ul className="space-y-2">
-                {product.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-start text-gray-600 text-sm">
+                {product.features.map((feature) => (
+                  <li key={feature} className="flex items-start text-gray-600 text-sm">
                     <Check size={16} className="text-green-500 mr-2 mt-0.5 flex-shrink-0" />
                     {feature}
                   </li>

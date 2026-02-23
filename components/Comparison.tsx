@@ -88,8 +88,8 @@ const Comparison: React.FC<ComparisonProps> = ({ products, onRemove, onClear }) 
                 {products.map(product => (
                   <td key={product.id} className="p-4 border-b">
                     <ul className="space-y-1">
-                      {product.features.map((feature, i) => (
-                        <li key={i} className="flex items-start text-sm text-gray-600">
+                      {product.features.map((feature) => (
+                        <li key={feature} className="flex items-start text-sm text-gray-600">
                           <CheckCircle size={14} className="text-green-500 mr-2 mt-0.5 flex-shrink-0" />
                           {feature}
                         </li>

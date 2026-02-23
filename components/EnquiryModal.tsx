@@ -38,10 +38,12 @@ const EnquiryModal: React.FC<EnquiryModalProps> = ({ product, onClose }) => {
     return (
         <div className="fixed inset-0 z-[10001] flex items-center justify-center p-4">
             {/* Backdrop */}
-            <div
-                className="absolute inset-0 bg-black/70 backdrop-blur-sm animate-fade-in"
-                onClick={onClose}
-            ></div>
+        <button
+            type="button"
+            aria-label="Close dialog"
+            className="absolute inset-0 bg-black/70 backdrop-blur-sm animate-fade-in"
+            onClick={onClose}
+        />
 
             {/* Modal */}
             <div

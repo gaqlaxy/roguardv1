@@ -38,25 +38,25 @@ const Blog: React.FC = () => {
           <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">{activePost.title}</h1>
           
           <div className="prose prose-lg prose-blue max-w-none text-gray-700 leading-relaxed">
-            {activePost.content.map((block, idx) => {
+            {activePost.content.map((block) => {
               if (block.type === 'h3') {
                 return (
-                  <h3 key={idx} className="text-lg font-bold mt-6">
+                  <h3 key={`h3-${block.text}`} className="text-lg font-bold mt-6">
                     {block.text}
                   </h3>
                 );
               }
               if (block.type === 'ul') {
                 return (
-                  <ul key={idx} className="list-disc pl-5 my-4 space-y-2">
-                    {block.items.map((item, itemIdx) => (
-                      <li key={itemIdx}>{item}</li>
+                  <ul key={`ul-${block.items.join('|')}`} className="list-disc pl-5 my-4 space-y-2">
+                    {block.items.map((item) => (
+                      <li key={item}>{item}</li>
                     ))}
                   </ul>
                 );
               }
               return (
-                <p key={idx} className="mt-2">
+                <p key={`p-${block.text}`} className="mt-2">
                   {block.text}
                 </p>
               );
@@ -88,9 +88,10 @@ const Blog: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {BLOG_POSTS.map(post => (
-            <div 
+            <button
               key={post.id}
-              className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group cursor-pointer"
+              type="button"
+              className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group cursor-pointer text-left"
               onClick={() => setActivePost(post)}
             >
               <div className="relative h-48 overflow-hidden">
@@ -122,7 +123,7 @@ const Blog: React.FC = () => {
                   Read Article <ChevronRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
-            </div>
+            </button>
           ))}
         </div>
       </div>

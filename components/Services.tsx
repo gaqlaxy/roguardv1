@@ -32,8 +32,8 @@ const Services: React.FC = () => {
                         { icon: <Tool size={28} />, title: "Expert Technicians", desc: "Background verified pros" },
                         { icon: <Shield size={28} />, title: "Genuine Spares", desc: "100% authentic parts" },
                         { icon: <Phone size={28} />, title: "24/7 Support", desc: "Always here to help" },
-                    ].map((feature, idx) => (
-                        <div key={idx} className="flex flex-col items-center text-center p-4 bg-slate-50 rounded-xl hover:shadow-md transition-shadow">
+                    ].map((feature) => (
+                        <div key={feature.title} className="flex flex-col items-center text-center p-4 bg-slate-50 rounded-xl hover:shadow-md transition-shadow">
                             <div className="bg-brand-100 p-3 rounded-full text-brand-600 mb-3">
                                 {feature.icon}
                             </div>
@@ -70,8 +70,8 @@ const Services: React.FC = () => {
                             </div>
 
                             <ul className="space-y-3 mb-8 flex-grow">
-                                {plan.features.map((feature, i) => (
-                                    <li key={i} className="flex items-start text-sm text-gray-700">
+                                {plan.features.map((feature) => (
+                                    <li key={feature} className="flex items-start text-sm text-gray-700">
                                         <CheckCircle size={16} className="text-green-500 mr-2 mt-0.5 flex-shrink-0" />
                                         <span>{feature}</span>
                                     </li>

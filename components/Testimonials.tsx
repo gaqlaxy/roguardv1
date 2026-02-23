@@ -27,7 +27,7 @@ const Testimonials: React.FC = () => {
               <div className="flex items-center space-x-1 mb-6">
                 {[...Array(5)].map((_, i) => (
                   <svg 
-                    key={i} 
+                    key={`${testimonial.id}-star-${i}`} 
                     className={`w-5 h-5 ${i < testimonial.rating ? 'text-yellow-400' : 'text-gray-300'}`} 
                     fill="currentColor" 
                     viewBox="0 0 20 20"

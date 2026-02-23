@@ -61,9 +61,9 @@ const About: React.FC = () => {
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {features.map((feature, idx) => (
+              {features.map((feature) => (
                 <div
-                  key={idx}
+                  key={feature.title}
                   className="flex flex-col items-start p-4 rounded-xl bg-slate-50 hover:bg-slate-100 transition-colors border border-slate-100"
                 >
                   <div className="mb-3 p-3 bg-white rounded-lg shadow-sm">

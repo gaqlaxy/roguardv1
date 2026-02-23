@@ -21,7 +21,7 @@ const Navbar: React.FC<NavbarProps> = ({
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -49,9 +49,11 @@ const Navbar: React.FC<NavbarProps> = ({
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
-          <div
+          <button
+            type="button"
             className="flex items-center cursor-pointer"
             onClick={() => handleLinkClick("/", "hero")}
+            aria-label="Go to home"
           >
             <div className="bg-brand-600 p-2 rounded-lg text-white mr-2">
               <Droplet size={24} fill="currentColor" />
@@ -61,7 +63,7 @@ const Navbar: React.FC<NavbarProps> = ({
             >
               Sham <span className="text-brand-600">Aqua</span>
             </span>
-          </div>
+          </button>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-6 lg:space-x-8 items-center">
