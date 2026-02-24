@@ -16,7 +16,7 @@ export const SERVICE_PLANS: ServicePlan[] = [
   {
     id: 's1',
     title: 'General Service',
-    price: 399,
+    price: 250,
     period: 'per visit',
     description: 'Complete check-up and cleaning of your RO system. Recommended every 6 months.',
     features: [
@@ -109,8 +109,8 @@ export const PRODUCTS: Product[] = [
   {
     id: 'p3',
     name: 'Aqua Innovica',
-    price: 18499,
-    originalPrice: 22000,
+    price: 13999,
+    originalPrice: 17999,
     description: 'Premium alkaline water purifier that maintains pH balance for better health benefits.',
     features: ['Alkaline Cartridge', 'Zero Water Wastage Tech', 'Hot & Cold Water Dispensing', 'Child Lock'],
     image: '/assets/Aqua_Innovica.jpeg',
@@ -160,25 +160,25 @@ export const PRODUCTS: Product[] = [
 export const TESTIMONIALS: Testimonial[] = [
   {
     id: 't1',
-    name: 'Sarah Johnson',
+    name: 'Xavier',
     role: 'Homeowner',
-    content: 'The installation was quick and the water tastes amazing. The service team is very responsive.',
+    content: 'I recently purchased an RO water purifier for my home in Anna Nagar, and the installation was completed within 24 hours. The technician explained everything clearly and was very professional. Water quality has improved drastically. Highly recommended service in Chennai!',
     rating: 5,
     image: 'https://picsum.photos/100/100?random=10'
   },
   {
     id: 't2',
-    name: 'Raj Patel',
-    role: 'Restaurant Owner',
-    content: 'We use the Commercial Master for our kitchen. It handles the load perfectly. Highly recommended.',
+    name: 'Surekha',
+    role: 'Homeowner',
+    content: 'We’ve been using their RO sales and service for the past 2 years for both home and office. Regular maintenance reminders and prompt service make them stand out.',
     rating: 5,
     image: 'https://picsum.photos/100/100?random=11'
   },
   {
     id: 't3',
-    name: 'Emily Davis',
-    role: 'Mother of two',
-    content: 'Peace of mind knowing my kids are drinking safe water. The maintenance plan is very affordable.',
+    name: 'Kamal Raj',
+    role: 'Homeowner',
+    content: 'My purifier stopped working suddenly, and I contacted them for service. Within 2 hours, their technician arrived and fixed the issue. Quick diagnosis and clean work. Best RO service support I’ve experienced so far.',
     rating: 4,
     image: 'https://picsum.photos/100/100?random=12'
   }
