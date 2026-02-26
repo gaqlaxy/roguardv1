@@ -49,20 +49,10 @@ const Navbar: React.FC<NavbarProps> = ({
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
-          <button
-            type="button"
-            className="flex items-center cursor-pointer"
-            onClick={() => handleLinkClick("/", "hero")}
-            aria-label="Go to home"
-          >
-            <div className="bg-brand-600 p-2 rounded-lg text-white mr-2">
-              <Droplet size={24} fill="currentColor" />
-            </div>
-            <span
-              className="text-2xl font-bold text-slate-900"
-            >
-              Sham <span className="text-brand-600">Aqua</span>
-            </span>
+          {/* Insert Logo here  */}
+          {/* wrap it in button or href  */}
+          <button onClick={() => handleLinkClick("/")}>
+            <img src="/shamaquatrans.png" className="w-20 " alt="" />
           </button>
 
           {/* Desktop Menu */}

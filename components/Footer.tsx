@@ -22,14 +22,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, onScrollToSection }) => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div className="col-span-1 md:col-span-1">
             <div className="flex items-center mb-4 text-white">
-              <Droplet
-                size={24}
-                className="text-brand-500 mr-2"
-                fill="currentColor"
-              />
-              <span className="text-2xl font-bold">
-                Sham<span className="text-brand-500">Aqua</span>
-              </span>
+              <img src="/shamaquatrans.png" className="w-32" alt="ShamAqua" />
             </div>
             <p className="text-sm text-slate-400">
               Trusted providers of advanced water purification systems and
@@ -142,15 +135,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate, onScrollToSection }) => {
               >
                 <Instagram size={20} />
               </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noreferrer"
-                className="text-slate-400 hover:text-brand-400 transition-colors"
-                aria-label="Twitter"
-              >
-                <Twitter size={20} />
-              </a>
+
             </div>
           </div>
         </div>
